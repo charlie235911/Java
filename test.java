@@ -1,6 +1,8 @@
-package Java;
 import java.util.Scanner;
-public class test{
+/**
+ * Q7
+ */
+public class Q7 {
     public static void main(String[] args) {
         Scanner scn = new Scanner ( System.in );
         int a = 0, n = 0, check = 0, count = 0, count2 = 0, count3 = 0;
@@ -16,6 +18,7 @@ public class test{
         for(int i = 0; i < a; i++){
             if(b[i] > 0){
                 ans[n] *= b[i];
+                count3++;
             }
             else if(b[i] <= 0){
                 check = ans[n] * b[i];
@@ -23,6 +26,7 @@ public class test{
                     if(check * b[i+1] > 0){
                         ans[n] = check * b[i+1];
                         i++;
+                        count2 = 1;
                     }
                     else if(check * b[i+1] <= 0){
                         n++;
@@ -43,23 +47,12 @@ public class test{
             if(b[i] == 0){
                 count++;
             }
-            else if(b[i] < 0){
-                for(int j = i+1; ; j++){
-                    if(b[j] >= 0){
-                        i = j;
-                        break;
-                    }
-                    else{
-                        count2++;
-                    }
-                }
-                if(count2 >= count3){
-                    count3 = count2;
-                }
-            }
         }
-        if((count + count3) == a && ans[0] == 1){
-            if(count3 == 0 || count3 % 2 != 0){
+        if(count == a && ans[0] == 1){
+            ans[0] = 0;
+        }
+        if(count2 == 0){
+            if(count3 == 0){
                 ans[0] = 0;
             }
         }
@@ -68,5 +61,5 @@ public class test{
         }
         System.out.println(ans[0]);
         scn.close();
-    }
+    }   
 }
